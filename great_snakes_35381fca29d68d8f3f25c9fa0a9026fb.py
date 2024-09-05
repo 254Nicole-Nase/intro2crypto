@@ -21,3 +21,13 @@ print("your flag is: " + base64.b64encode(flag3_1).decode())
 flag4 = 11515195063862318899931685488813747395775516287289682636499965282714637259206269
 flag4_1 =  long_to_bytes(flag4)
 print("The flag is: " + flag4_1.decode())
+
+# Given the string label, XOR each character with the integer 13. Convert these integers back to a string and submit the flag as crypto{new_string}.
+a = "label"
+key = 13
+conv = bytes_to_long(a.encode())
+flag5 = "".join(chr(ord(char) ^ 13) for char in a)
+flag = f"crypto{{{flag5}}}"
+print("Here is your flag:"+flag)
+
+
