@@ -30,4 +30,20 @@ flag5 = "".join(chr(ord(char) ^ 13) for char in a)
 flag = f"crypto{{{flag5}}}"
 print("Here is your flag:"+flag)
 
+#  Below is a series of outputs where three random keys have been XOR'd together and with the flag. Use the above properties to undo the encryption in the final line to obtain the flag.
+KEY1 = "a6c8b6733c9b22de7bc0253266a3867df55acde8635e19c73313"
+KEY2_KEY1 = "37dcb292030faa90d07eec17e3b1c6d8daf94c35d4c9191a5e1e"
+KEY2_KEY3 = "c1545756687e7573db23aa1c3452a098b71a7fbf0fddddde5fc1"
+FLAG_KEY1_KEY3_KEY2 = "04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf"
 
+key1_b = bytes.fromhex(KEY1)
+key2_1b = bytes.fromhex(KEY2_KEY1)
+key2_3b = bytes.fromhex(KEY2_KEY3)
+flag_123b = bytes.fromhex(FLAG_KEY1_KEY3_KEY2)
+
+key2_b = bytes(a ^ b for a, b in zip(key2_1b, key1_b))
+key3_b = bytes(a ^ b for a, b in zip(key2_3b, key2_b))
+flag_b = bytes(a ^ b ^ c ^ d for a, b, c, d in zip(flag_123b, key1_b, key2_b, key3_b))
+
+flag_final = flag_b.decode()
+print("Here is your flag: " + flag_final)
