@@ -47,3 +47,5 @@ flag_b = bytes(a ^ b ^ c ^ d for a, b, c, d in zip(flag_123b, key1_b, key2_b, ke
 
 flag_final = flag_b.decode()
 print("Here is your flag: " + flag_final)
+
+
